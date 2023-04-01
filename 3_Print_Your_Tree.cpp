@@ -10,24 +10,28 @@ class Node{
   public:
     int data;
     Node *left, *right;
+    // Node(){
+    //   this = NULL;
+    // }
 
     Node(int data) {
-      this.data = data;
-      this.left = this.right = NULL;
+      this->data = data;
+      this->left = this->right = NULL;
     }
 
     // Function to create a node.
-    Node* add(Node *root, int value) {
+    Node* add(int value, Node *root) {
       if(root == NULL) {
         return new Node(value);
       }
 
-      if(value < root.data) {
-        root.left = add(value, root);
+      if(value < root->data) {
+        root->left = add(value, root);
       }
       else{
-        root.right = add(value, root);
+        root->right = add(value, root);
       }
+      return root;
     }
 };
 
@@ -44,7 +48,7 @@ vector<int> preorder(Node* root) {
   while(!stk.empty()){
       Node* temp = stk.front();
       stk.pop();
-
+      
       if(temp->left){
           stk.push(temp->left);
       }
@@ -65,44 +69,51 @@ vector<int> postorderTraversal(Node* root) {
         return ans;
     }
     
-    queue <Node*> q;
+    stack <Node*> q;
     q.push(root);
     
     while(!q.empty()){
-        Node* temp = q.front();
+        Node* temp = q.top();
         q.pop();
-        if(temp->right){
-            q.push(temp->right);
-        }
         if(temp->left){
             q.push(temp->left);
         }
-        ans.push_back(temp->val);
+        if(temp->right){
+            q.push(temp->right);
+        }
+        // if(temp->left){
+        //     q.push(temp->left);
+        // }
+        ans.push_back(temp->data);
     }
     reverse(ans.begin(), ans.end());
+    
     return ans;
+    
 }
 
 int main()
 {
-  
   Node* root = NULL;
-  Node bt;
+  Node* bt = new Node(2);
 
-  root = bt.add(12, root);
-  root = bt.add(13, root);
-  root = bt.add(11, root);
-  root = bt.add(10, root);
-  root = bt.add(9, root);
+  root = bt->add(12, root);
+  root = bt->add(13, root);
+  root = bt->add(11, root);
+  root = bt->add(10, root);
+  root = bt->add(9, root);
 
-  auto ans1 = preorder(root);
-  for(auto itr:ans1) {
-    cout<<itr<<" ";
+  vector<int> ans1;
+  cout<<78;
+  // ans1.push_back(1);
+  // ans1 = preorder(root);
+  for(int i=0;i<ans1.size();i++){
+    cout<<ans1[i];
   }
 
-  auto ans2 = postorderTraversal(root);
-  for(auto itr:ans2) {
-    cout<<itr<<" ";
+  vector<int> ans2 = postorderTraversal(root);
+  for(int i=0;i<ans2.size();i++){
+    cout<<ans2[i];
   }
   return 0;
 }

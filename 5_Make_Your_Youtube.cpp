@@ -57,8 +57,8 @@ void operator<<(ostream &COUT, MyCollection &myCollection)
 int main()
 {
     // Creating 2 channels named TechFusion and SAIT
-    YoutubeChannel yt1 = YoutubeChannel("TechFusion", 5000);
-    YoutubeChannel yt2 = YoutubeChannel("SAIT", 6000);
+    YoutubeChannel yt1 = new YoutubeChannel("TechFusion", 5000);
+    YoutubeChannel yt2 = new YoutubeChannel("SAIT", 6000);
 
     cout << yt1 << yt2;
     cout << endl;

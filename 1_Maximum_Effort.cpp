@@ -9,25 +9,27 @@
  *
  */
 #include <iostream>
+using namespace std;
 
 int maxValue(int *arr, int size)
 {
     int *max = arr;
     for (int i = 1; i < size; i++)
     {
-        if (*arr > *max)
+        if ((*arr) > (*max))
         {
             max = arr;
         }
         arr++;
     }
-    return max;
+    int answer = *max;
+    return answer;
 }
 
 int main()
 {
     int arr[] = {10, 20, 5, 30, 15};
-    int size = sizeof(arr) / sizeof(arr);
+    int size = sizeof(arr) / sizeof(int);
 
     int max = maxValue(arr, size);
 

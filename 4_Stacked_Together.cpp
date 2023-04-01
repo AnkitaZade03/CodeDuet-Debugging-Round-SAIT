@@ -12,11 +12,10 @@ public:
     int data;
     Node *next;
 };
-
 class Stack
 {
 public:
-    Node *top;
+    Node *top = NULL;
     void display();
     void push();
     void pop();
@@ -29,10 +28,11 @@ void Stack ::display()
     if (top == NULL)
     {
         cout << "Empty Stack\n";
+        return;
     }
     else
     {
-        Node *p;
+        Node *p=root;
 
         while (p)
         {
@@ -45,7 +45,15 @@ void Stack ::display()
 // Push values in the stack
 void Stack ::push()
 {
-    Node *p;
+    Node *p = NULL;
+    if(!top){
+        cout << "Enter data: ";
+        cin >> p->data;
+        p->next = NULL;
+        top = p;
+        root = p;
+    }
+    
     if (top)
     {
         cout << "Enter data: ";
@@ -66,7 +74,12 @@ void Stack::pop()
     else
     {
         Node *p = top;
-        top = top->next;
+        Node* prev = root;
+        while(prev->next!=top){
+            prev = prev->next;
+        }
+        prev->next = NULL;
+        top = prev;
         delete p;
         display();
     }
@@ -83,7 +96,7 @@ void Stack::peek()
         int x;
         cin >> x;
         Node *p = top;
-        for (int i = 1; p && i <= x; i++, p = p->next)
+        for (int i = 1; (p!=NULL) && (i <= x); i++, p = p->next)
         {
             if (i == x)
                 cout << p->data << endl;

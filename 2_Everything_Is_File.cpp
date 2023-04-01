@@ -48,7 +48,7 @@ int main()
 
     
     while(in.eof()){  //Iterate in file1. Copy data from file1 to file3
-        in>>st;
+        in>>getline(cin,st);
         out<<st;
     }
 
@@ -56,7 +56,7 @@ int main()
      in.open("file2.txt"); //Read input file2
 
   while(in.eof()){ //Iterate in file2. Copy data from file2 to file3
-        in>>st;
+        in>>getline(cin,st);
         out<<st;
     }
 
